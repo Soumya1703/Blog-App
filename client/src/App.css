@@ -32,7 +32,7 @@ header a.logo{
 }
 header nav{
     display:flex;
-    gap: 24px;
+    gap: 20px;
 }
 
 div.post{
@@ -89,10 +89,10 @@ button{
     width: 100%;
     display: block;
     background-color: #555;
-    border:0;
+    border:2px;
     color: #fff;
-    border-radius: 5px;
-    padding: 7px 0;
+    border-radius: 3px;
+    padding: 5px;
 }
 form.login h1, form.register h1{
     text-align: center;
