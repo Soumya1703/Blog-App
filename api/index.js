@@ -11,7 +11,6 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
-
 const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
@@ -108,6 +107,19 @@ app.put("/post", upload.single("file"), async (req, res) => {
   await post.save();
 
   res.status(204).end();
+});
+
+app.delete("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = await Post.findById(id);
+
+  if (!post) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  await Post.deleteOne({ _id: id });
+  fs.unlinkSync(post.cover);
+
+  res.status(200).json({});
 });
 
 app.get("/post", async (req, res) => {
